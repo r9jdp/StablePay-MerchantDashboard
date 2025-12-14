@@ -28,9 +28,9 @@ export default function DashboardOverview() {
   const failedTransactions = 0; // No failed transactions in blockchain data
   const pendingTransactions = 0; // No pending transactions in blockchain data
 
-  // Format revenue with $ and commas
+  // Format revenue with ETH
   const formatRevenue = (amount: number) => {
-    return `$${amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    return `${amount.toLocaleString("en-US", { minimumFractionDigits: 4, maximumFractionDigits: 4 })} ETH`;
   };
 
   // Stats use cached values immediately, show T/A only if never fetched
@@ -44,7 +44,7 @@ export default function DashboardOverview() {
       direction: "up" as const,
     },
     {
-      label: "REVENUE GENERATED",
+      label: "REVENUE (ETH)",
       value: hasFetched ? formatRevenue(totalRevenue) : "T/A",
       description: hasFetched ? "TOTAL EARNINGS" : "Fetch transactions for data",
       icon: "proccesor" as keyof typeof iconMap,

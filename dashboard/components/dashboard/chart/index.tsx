@@ -29,7 +29,7 @@ interface DashboardChartProps {
 
 const chartConfig = {
   revenue: {
-    label: "Revenue",
+    label: "Revenue (USD)",
     color: "var(--chart-1)",
   },
   transactions: {
@@ -37,7 +37,7 @@ const chartConfig = {
     color: "var(--chart-2)",
   },
   fees: {
-    label: "Fees",
+    label: "Fees (USD)",
     color: "var(--chart-3)",
   },
 } satisfies ChartConfig;
@@ -72,7 +72,7 @@ function generateChartData(transactions: TransactionEvent[], period: TimePeriod)
       if (monthDiff >= 0 && monthDiff < monthsToShow) {
         const key = txDate.toLocaleString("en-US", { month: "short" });
         if (groupedData[key]) {
-          groupedData[key].revenue += parseFloat(tx.amountBC || "0");
+          groupedData[key].revenue += parseFloat(tx.amountSC || "0");
           groupedData[key].count += 1;
         }
       }
@@ -106,7 +106,7 @@ function generateChartData(transactions: TransactionEvent[], period: TimePeriod)
       if (daysDiff >= 0 && daysDiff < daysToShow) {
         const key = dateFormat(txDate);
         if (groupedData[key]) {
-          groupedData[key].revenue += parseFloat(tx.amountBC || "0");
+          groupedData[key].revenue += parseFloat(tx.amountSC || "0");
           groupedData[key].count += 1;
         }
       }
